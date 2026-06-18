@@ -1,0 +1,870 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>El Desencanto — Democracia en Chile 1990–2023</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --rojo:     #c0392b;
+            --rojo-dim: #7d1f15;
+            --carbón:   #1a1a1a;
+            --gris:     #2e2e2e;
+            --gris-med: #555;
+            --gris-claro: #aaa;
+            --crema:    #f2ede6;
+            --blanco:   #fff;
+            --display:  "Playfair Display", Georgia, serif;
+            --cuerpo:   "Inter", system-ui, sans-serif;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--cuerpo);
+            background: var(--carbón);
+            color: var(--crema);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* ── PORTADA ─────────────────────────────────── */
+        #portada {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 8vw 6vw 4vw;
+            border-bottom: 1px solid var(--gris);
+            position: relative;
+        }
+
+        #portada::after {
+            content: "";
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 3px;
+            background: var(--rojo);
+        }
+
+        .eyebrow {
+            font-family: var(--cuerpo);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--rojo);
+            margin-bottom: 1.5rem;
+        }
+
+        h1 {
+            font-family: var(--display);
+            font-size: clamp(3rem, 9vw, 7rem);
+            font-weight: 700;
+            line-height: 0.95;
+            color: var(--blanco);
+            margin-bottom: 2rem;
+        }
+
+        h1 em {
+            font-style: italic;
+            font-weight: 400;
+            color: var(--rojo);
+        }
+
+        .subtítulo {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            font-weight: 300;
+            color: var(--gris-claro);
+            max-width: 560px;
+            margin-bottom: 4rem;
+        }
+
+        .scroll-aviso {
+            font-size: 0.8rem;
+            color: var(--gris-med);
+            letter-spacing: 0.1em;
+        }
+
+        .scroll-aviso span {
+            display: inline-block;
+            animation: bajar 1.4s ease-in-out infinite;
+        }
+
+        @keyframes bajar {
+            0%, 100% { transform: translateY(0); }
+            50%       { transform: translateY(6px); }
+        }
+
+        /* ── SECCIONES NARRATIVAS ────────────────────── */
+        .seccion {
+            padding: 10vh 6vw;
+            border-bottom: 1px solid var(--gris);
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-family: var(--display);
+            font-size: clamp(1.8rem, 4vw, 3rem);
+            font-weight: 700;
+            color: var(--blanco);
+            margin-bottom: 0.5rem;
+            line-height: 1.1;
+        }
+
+        h2 .arco {
+            display: block;
+            font-size: 0.7rem;
+            font-family: var(--cuerpo);
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--rojo);
+            margin-bottom: 0.8rem;
+        }
+
+        .bajada {
+            color: var(--gris-claro);
+            max-width: 580px;
+            margin-bottom: 3rem;
+            font-size: 1rem;
+        }
+
+        /* ── CIFRA DESTACADA ─────────────────────────── */
+        .cifra-bloque {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .cifra {
+            background: var(--gris);
+            border-left: 3px solid var(--rojo);
+            padding: 1.2rem 1.6rem;
+            min-width: 180px;
+        }
+
+        .cifra-numero {
+            font-family: var(--display);
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--blanco);
+            line-height: 1;
+        }
+
+        .cifra-label {
+            font-size: 0.78rem;
+            color: var(--gris-claro);
+            margin-top: 0.3rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        /* ── GRÁFICOS SVG ────────────────────────────── */
+        .grafico-titulo {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--gris-claro);
+            margin-bottom: 0.75rem;
+        }
+
+        .grafico-wrap {
+            background: var(--gris);
+            padding: 1.5rem;
+            margin-bottom: 0.75rem;
+            overflow-x: auto;
+        }
+
+        svg.grafico {
+            display: block;
+            width: 100%;
+            height: auto;
+            overflow: visible;
+        }
+
+        .fuente-nota {
+            font-size: 0.72rem;
+            color: var(--gris-med);
+            margin-top: 0.4rem;
+        }
+
+        /* ── LÍNEA DE TIEMPO HITOS ───────────────────── */
+        .hitos-lista {
+            list-style: none;
+            border-left: 2px solid var(--rojo-dim);
+            padding-left: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .hitos-lista li {
+            position: relative;
+            margin-bottom: 1.6rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .hitos-lista li::before {
+            content: "";
+            position: absolute;
+            left: -1.65rem;
+            top: 0.4rem;
+            width: 0.6rem;
+            height: 0.6rem;
+            background: var(--rojo);
+            border-radius: 50%;
+        }
+
+        .hito-año {
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: var(--rojo);
+            letter-spacing: 0.1em;
+        }
+
+        .hito-texto {
+            color: var(--crema);
+            font-size: 0.95rem;
+        }
+
+        /* ── TABLA PLEBISCITOS ───────────────────────── */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+            margin-top: 1.5rem;
+        }
+
+        thead tr {
+            border-bottom: 2px solid var(--rojo);
+        }
+
+        th {
+            text-align: left;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--gris-claro);
+            padding: 0.5rem 0.75rem 0.75rem 0;
+        }
+
+        tbody tr {
+            border-bottom: 1px solid var(--gris);
+        }
+
+        td {
+            padding: 0.9rem 0.75rem 0.9rem 0;
+            color: var(--crema);
+            vertical-align: top;
+        }
+
+        td.numero {
+            font-family: var(--display);
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--blanco);
+        }
+
+        td.numero.rojo { color: var(--rojo); }
+
+        .barra-plebiscito {
+            display: flex;
+            height: 8px;
+            margin-top: 6px;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .barra-aprueba { background: #2ecc71; }
+        .barra-rechaza { background: var(--rojo); }
+
+        /* ── FOOTER ──────────────────────────────────── */
+        footer {
+            padding: 4rem 6vw;
+            border-top: 1px solid var(--gris);
+            font-size: 0.8rem;
+            color: var(--gris-med);
+        }
+
+        footer strong { color: var(--gris-claro); }
+
+        /* ── REVEAL ON SCROLL ─────────────────────────  */
+        .revelar {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .revelar.visible {
+            opacity: 1;
+            transform: none;
+        }
+
+        /* ── RESPONSIVE ───────────────────────────────── */
+        @media (max-width: 600px) {
+            .cifra-bloque { gap: 1rem; }
+            .cifra { min-width: 140px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .revelar { opacity: 1; transform: none; transition: none; }
+            .scroll-aviso span { animation: none; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ══ PORTADA ══════════════════════════════════════════ -->
+<section id="portada">
+    <p class="eyebrow">Chile 1990 — 2023</p>
+    <h1>El<br><em>desencanto</em><br>democrático</h1>
+    <p class="subtítulo">
+        Tres décadas entre el entusiasmo y el agotamiento. 
+        Cómo Chile pasó de celebrar la democracia a desconfiar 
+        de todas sus instituciones.
+    </p>
+    <p class="scroll-aviso">Desplaza para leer <span>↓</span></p>
+</section>
+
+<!-- ══ ARCO 1: LUNA DE MIEL Y DESENGANCHE ═══════════════ -->
+<section class="seccion revelar">
+    <h2>
+        <span class="arco">Arco I · 1990–2019</span>
+        La luna de miel y el desenganche
+    </h2>
+    <p class="bajada">
+        En 1990 Chile retornó a la democracia con un apoyo masivo. 
+        Tres décadas después, ese entusiasmo se transformó en una brecha 
+        creciente entre quienes dicen preferir la democracia y quienes 
+        declaran estar satisfechos con ella.
+    </p>
+
+    <div class="cifra-bloque">
+        <div class="cifra">
+            <div class="cifra-numero" id="stat-apoyo-pico">—</div>
+            <div class="cifra-label">Apoyo a la democracia, 2013<br><small>(máximo histórico serie)</small></div>
+        </div>
+        <div class="cifra">
+            <div class="cifra-numero" id="stat-satisf-2019">—</div>
+            <div class="cifra-label">Satisfacción con la democracia, 2019<br><small>(CEP, mínimo histórico)</small></div>
+        </div>
+        <div class="cifra">
+            <div class="cifra-numero" id="stat-brecha">—</div>
+            <div class="cifra-label">Brecha apoyo vs satisfacción, 2019<br><small>(puntos porcentuales)</small></div>
+        </div>
+    </div>
+
+    <p class="grafico-titulo">Apoyo a la democracia vs. satisfacción — Chile 1995–2019</p>
+    <div class="grafico-wrap">
+        <svg id="grafico-brecha" class="grafico" viewBox="0 0 760 280" aria-label="Gráfico de líneas: apoyo y satisfacción con la democracia en Chile"></svg>
+    </div>
+    <p class="fuente-nota">Fuente: Latinobarómetro (microdatos Chile, IDENPA=152). 2019: CEP Encuesta N°84.</p>
+
+    <p class="grafico-titulo" style="margin-top:2.5rem;">Confianza en instituciones — % que declara mucha o bastante confianza</p>
+    <div class="grafico-wrap">
+        <svg id="grafico-instituciones" class="grafico" viewBox="0 0 760 260" aria-label="Gráfico confianza en instituciones"></svg>
+    </div>
+    <p class="fuente-nota">Fuente: Latinobarómetro. Congreso, Gobierno, Partidos y Policía. Valores ausentes = sin dato comparable ese año.</p>
+
+    <h3 style="font-family:var(--display);color:var(--blanco);margin:3rem 0 1rem;font-size:1.3rem;">Hitos del período</h3>
+    <ul class="hitos-lista" id="lista-hitos"></ul>
+</section>
+
+<!-- ══ ARCO 2: ESTALLIDO ══════════════════════════════════ -->
+<section class="seccion revelar">
+    <h2>
+        <span class="arco">Arco II · Octubre 2019</span>
+        El estallido social
+    </h2>
+    <p class="bajada">
+        El 18 de octubre de 2019 evasiones masivas en el Metro de Santiago 
+        detonaron la mayor movilización social desde el retorno democrático.
+        La aprobación presidencial colapsó en semanas.
+    </p>
+
+    <div class="cifra-bloque">
+        <div class="cifra">
+            <div class="cifra-numero" id="stat-pinera-pre">—</div>
+            <div class="cifra-label">Aprobación Piñera, sept. 2019</div>
+        </div>
+        <div class="cifra">
+            <div class="cifra-numero rojo" id="stat-pinera-post">—</div>
+            <div class="cifra-label">Aprobación Piñera, nov. 2019<br><small>(CADEM N°307)</small></div>
+        </div>
+        <div class="cifra">
+            <div class="cifra-numero" id="stat-cong-2019">—</div>
+            <div class="cifra-label">Confianza en el Congreso, dic. 2019<br><small>(CEP N°84)</small></div>
+        </div>
+    </div>
+
+    <p class="grafico-titulo">Aprobación presidencial Piñera II — CADEM mensual 2018–2020</p>
+    <div class="grafico-wrap">
+        <svg id="grafico-pinera" class="grafico" viewBox="0 0 760 260" aria-label="Gráfico aprobación Piñera"></svg>
+    </div>
+    <p class="fuente-nota">Fuente: CADEM Plaza Pública (serie mensual). Wikipedia — Anexo encuestas aprobación gobierno Piñera.</p>
+</section>
+
+<!-- ══ ARCO 3: PROCESO CONSTITUCIONAL ════════════════════ -->
+<section class="seccion revelar">
+    <h2>
+        <span class="arco">Arco III · 2020–2023</span>
+        El proceso constitucional fallido
+    </h2>
+    <p class="bajada">
+        La crisis derivó en un acuerdo político histórico: un proceso 
+        constituyente inédito. Pero el país rechazó dos propuestas 
+        consecutivas, cerrando el ciclo sin nueva Constitución.
+    </p>
+
+    <table id="tabla-plebiscitos">
+        <thead>
+            <tr>
+                <th>Año</th>
+                <th>Plebiscito</th>
+                <th>Aprueba</th>
+                <th>Rechaza</th>
+                <th>Participación</th>
+                <th>Resultado</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <p class="fuente-nota" style="margin-top:0.75rem;">Fuente: SERVEL — resultados oficiales.</p>
+
+    <div style="margin-top:3rem;" class="cifra-bloque">
+        <div class="cifra">
+            <div class="cifra-numero">83.8%</div>
+            <div class="cifra-label">Apoyaba una nueva Constitución<br><small>CEP N°84, diciembre 2019</small></div>
+        </div>
+        <div class="cifra">
+            <div class="cifra-numero rojo">55.8%</div>
+            <div class="cifra-label">Rechazó la segunda propuesta<br><small>Diciembre 2023</small></div>
+        </div>
+    </div>
+
+    <p style="color:var(--gris-claro);max-width:560px;font-size:0.95rem;margin-top:1rem;">
+        En cuatro años el país pasó de una demanda casi unánime por una nueva Constitución 
+        a rechazar dos veces los textos elaborados para concretarla. 
+        El desencanto no era solo con los gobiernos: era con las instituciones y los procesos mismos.
+    </p>
+</section>
+
+<!-- ══ CIERRE ═════════════════════════════════════════════ -->
+<section class="seccion revelar">
+    <h2>
+        <span class="arco">Conclusión</span>
+        Una democracia sostenida, una ciudadanía agotada
+    </h2>
+    <p class="bajada">
+        Los datos muestran un patrón consistente: el apoyo abstracto a la democracia 
+        se mantuvo relativamente alto, pero la satisfacción con su funcionamiento 
+        y la confianza en sus instituciones cayeron de forma sostenida durante tres décadas.
+        El estallido de 2019 no fue un rayo en cielo despejado: fue el punto de llegada 
+        de un desenganche acumulado.
+    </p>
+
+    <div class="cifra-bloque">
+        <div class="cifra">
+            <div class="cifra-numero">30 años</div>
+            <div class="cifra-label">Entre el retorno democrático y el estallido</div>
+        </div>
+        <div class="cifra">
+            <div class="cifra-numero rojo">56.3 pp</div>
+            <div class="cifra-label">Caída en confianza al Congreso<br><small>1995–2019: de 49% a 2.7%</small></div>
+        </div>
+        <div class="cifra">
+            <div class="cifra-numero">3</div>
+            <div class="cifra-label">Plebiscitos constitucionales<br><small>en 3 años</small></div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <strong>El Desencanto Democrático</strong> — Proyecto de infografía de datos · DNO002-12<br>
+    Fuentes: Latinobarómetro (microdatos Chile 1995–2020), CEP Encuesta N°84 (dic. 2019), 
+    CADEM Plaza Pública, SERVEL, Wikipedia (encuestas aprobación gobierno Piñera II).
+</footer>
+
+<script>
+// ── DATOS EMBEBIDOS ──────────────────────────────────────
+const DATOS = {
+  luna_miel: [
+    {año:1995,apoyo:54.3,satisf:34.4,cong:49.0,gob:60.5,part:33.3,pol:64.1},
+    {año:1996,apoyo:56.7,satisf:28.7,cong:43.4,gob:51.6,part:27.8,pol:47.9},
+    {año:1997,apoyo:62.5,satisf:37.9,cong:54.6,gob:null, part:35.3,pol:null},
+    {año:1998,apoyo:53.5,satisf:32.5,cong:41.7,gob:null, part:24.9,pol:56.7},
+    {año:2000,apoyo:58.1,satisf:36.6,cong:42.2,gob:null, part:24.5,pol:59.3},
+    {año:2001,apoyo:51.1,satisf:26.5,cong:35.0,gob:null, part:24.3,pol:52.1},
+    {año:2002,apoyo:57.2,satisf:34.2,cong:35.0,gob:51.5,part:14.4,pol:64.3},
+    {año:2003,apoyo:53.7,satisf:36.5,cong:22.9,gob:47.9,part:13.6,pol:53.5},
+    {año:2004,apoyo:61.9,satisf:43.5,cong:32.8,gob:55.2,part:22.9,pol:62.9},
+    {año:2005,apoyo:65.2,satisf:48.0,cong:38.8,gob:60.8,part:19.7,pol:64.6},
+    {año:2006,apoyo:58.5,satisf:43.8,cong:30.9,gob:59.8,part:23.5,pol:64.2},
+    {año:2007,apoyo:48.2,satisf:38.5,cong:29.3,gob:null, part:20.3,pol:70.5},
+    {año:2008,apoyo:55.0,satisf:41.7,cong:32.8,gob:51.7,part:17.2,pol:63.0},
+    {año:2009,apoyo:62.2,satisf:55.7,cong:39.3,gob:66.6,part:22.2,pol:60.3},
+    {año:2010,apoyo:68.0,satisf:58.8,cong:42.0,gob:58.1,part:23.1,pol:62.0},
+    {año:2011,apoyo:66.4,satisf:34.4,cong:29.3,gob:37.9,part:16.9,pol:49.1},
+    {año:2013,apoyo:68.6,satisf:43.0,cong:22.4,gob:34.8,part:null, pol:58.6},
+    {año:2015,apoyo:66.9,satisf:47.1,cong:27.0,gob:45.3,part:18.2,pol:65.0},
+    {año:2016,apoyo:55.8,satisf:30.6,cong:18.6,gob:27.5,part:11.9,pol:62.6},
+    {año:2017,apoyo:58.3,satisf:37.4,cong:20.6,gob:28.5,part:14.0,pol:46.5},
+    {año:2018,apoyo:60.1,satisf:47.0,cong:19.9,gob:40.0,part:14.4,pol:47.8},
+    {año:2019,apoyo:61.8,satisf:5.5, cong:2.7, gob:5.5, part:1.8, pol:18.0,cep:true}
+  ],
+  pinera: [
+    {fecha:"2018-03",aprueba:55,desaprueba:21},
+    {fecha:"2018-04",aprueba:57,desaprueba:26},
+    {fecha:"2018-05",aprueba:56,desaprueba:27},
+    {fecha:"2018-06",aprueba:58,desaprueba:27},
+    {fecha:"2018-07",aprueba:53,desaprueba:33},
+    {fecha:"2018-08",aprueba:46,desaprueba:39},
+    {fecha:"2018-09",aprueba:45,desaprueba:41},
+    {fecha:"2018-10",aprueba:49,desaprueba:37},
+    {fecha:"2018-11",aprueba:41,desaprueba:45},
+    {fecha:"2018-12",aprueba:39,desaprueba:47},
+    {fecha:"2019-01",aprueba:41,desaprueba:43},
+    {fecha:"2019-02",aprueba:42,desaprueba:44},
+    {fecha:"2019-03",aprueba:39,desaprueba:48},
+    {fecha:"2019-04",aprueba:36,desaprueba:52},
+    {fecha:"2019-05",aprueba:34,desaprueba:52},
+    {fecha:"2019-06",aprueba:32,desaprueba:57},
+    {fecha:"2019-07",aprueba:31,desaprueba:57},
+    {fecha:"2019-08",aprueba:32,desaprueba:55},
+    {fecha:"2019-09",aprueba:32,desaprueba:54},
+    {fecha:"2019-10",aprueba:25,desaprueba:64,hito:"Estallido 18/10"},
+    {fecha:"2019-11",aprueba:13,desaprueba:80},
+    {fecha:"2019-12",aprueba:11,desaprueba:81},
+    {fecha:"2020-01",aprueba:11,desaprueba:82},
+    {fecha:"2020-02",aprueba:12,desaprueba:81},
+    {fecha:"2020-03",aprueba:18,desaprueba:71,hito:"Pandemia"},
+    {fecha:"2020-04",aprueba:24,desaprueba:65},
+    {fecha:"2020-05",aprueba:27,desaprueba:62},
+    {fecha:"2020-06",aprueba:24,desaprueba:65},
+    {fecha:"2020-07",aprueba:20,desaprueba:72},
+    {fecha:"2020-08",aprueba:19,desaprueba:71},
+    {fecha:"2020-09",aprueba:21,desaprueba:68},
+    {fecha:"2020-10",aprueba:17,desaprueba:74,hito:"Plebiscito"},
+    {fecha:"2020-11",aprueba:16,desaprueba:73},
+    {fecha:"2020-12",aprueba:14,desaprueba:74}
+  ],
+  plebiscitos: [
+    {año:2020,evento:"Plebiscito de entrada",aprueba:78.28,rechaza:21.72,participacion:50.95},
+    {año:2022,evento:"1° plebiscito de salida",aprueba:38.14,rechaza:61.86,participacion:85.86},
+    {año:2023,evento:"2° plebiscito de salida",aprueba:44.04,rechaza:55.76,participacion:85.44}
+  ],
+  hitos: [
+    {año:1990,texto:"Retorno a la democracia — Aylwin asume la Presidencia"},
+    {año:2005,texto:"Reforma constitucional elimina senadores designados"},
+    {año:2010,texto:"Primera alternancia política desde 1990"},
+    {año:2011,texto:"Movimiento estudiantil masivo por educación pública"},
+    {año:2015,texto:"Escándalos de corrupción (caso Caval) sacuden al gobierno"},
+    {año:2019,texto:"Estallido social — 18 de octubre"}
+  ]
+};
+
+// ── UTILIDADES SVG ───────────────────────────────────────
+function escala(val, min, max, outMin, outMax) {
+    return outMin + ((val - min) / (max - min)) * (outMax - outMin);
+}
+
+function svgEl(tag, attrs) {
+    const el = document.createElementNS("http://www.w3.org/2000/svg", tag);
+    for (const [k, v] of Object.entries(attrs)) el.setAttribute(k, v);
+    return el;
+}
+
+// ── GRÁFICO 1: BRECHA APOYO VS SATISFACCIÓN ─────────────
+function dibujarBrecha() {
+    const svg = document.getElementById("grafico-brecha");
+    const W = 760, H = 280, padL = 40, padR = 20, padT = 20, padB = 40;
+    const datos = DATOS.luna_miel;
+
+    const años  = datos.map(d => d.año);
+    const minA  = Math.min(...años), maxA = Math.max(...años);
+    const minV  = 0, maxV = 100;
+
+    const cx = a  => escala(a, minA, maxA, padL, W - padR);
+    const cy = v  => escala(v, minV, maxV, H - padB, padT);
+
+    // ejes
+    const ejeX = svgEl("line", {x1: padL, y1: H-padB, x2: W-padR, y2: H-padB, stroke:"#555", "stroke-width":"1"});
+    svg.appendChild(ejeX);
+
+    // guías horizontales
+    [25, 50, 75].forEach(v => {
+        const y = cy(v);
+        svg.appendChild(svgEl("line", {x1:padL, y1:y, x2:W-padR, y2:y, stroke:"#333", "stroke-width":"0.5", "stroke-dasharray":"4 4"}));
+        const lbl = svgEl("text", {x:padL-4, y:y+4, fill:"#666", "font-size":"9", "text-anchor":"end"});
+        lbl.textContent = v + "%";
+        svg.appendChild(lbl);
+    });
+
+    // área brecha (relleno entre curvas)
+    const puntosApoyo  = datos.map(d => `${cx(d.año)},${cy(d.apoyo)}`);
+    const puntosSmooth = datos.slice().reverse().map(d => `${cx(d.año)},${cy(d.satisf)}`);
+    const area = svgEl("polygon", {
+        points: [...puntosApoyo, ...puntosSmooth].join(" "),
+        fill: "rgba(192,57,43,0.12)", stroke:"none"
+    });
+    svg.appendChild(area);
+
+    // línea satisfacción
+    let dSatisf = "";
+    datos.forEach((d, i) => {
+        dSatisf += (i === 0 ? "M" : "L") + cx(d.año) + "," + cy(d.satisf);
+    });
+    svg.appendChild(svgEl("path", {d:dSatisf, stroke:"#c0392b", "stroke-width":"2", fill:"none"}));
+
+    // línea apoyo
+    let dApoyo = "";
+    datos.forEach((d, i) => {
+        dApoyo += (i === 0 ? "M" : "L") + cx(d.año) + "," + cy(d.apoyo);
+    });
+    svg.appendChild(svgEl("path", {d:dApoyo, stroke:"#f2ede6", "stroke-width":"2", fill:"none"}));
+
+    // puntos + año etiqueta en eje X
+    datos.forEach(d => {
+        // punto apoyo
+        svg.appendChild(svgEl("circle", {cx:cx(d.año), cy:cy(d.apoyo), r:"3", fill:"#f2ede6"}));
+        // punto satisfacción
+        svg.appendChild(svgEl("circle", {cx:cx(d.año), cy:cy(d.satisf), r:"3", fill:"#c0392b"}));
+        // etiqueta eje X (solo años redondos)
+        if (d.año % 5 === 0 || d.año === 1995 || d.año === 2019) {
+            const lbl = svgEl("text", {x:cx(d.año), y:H-padB+14, fill:"#888", "font-size":"9", "text-anchor":"middle"});
+            lbl.textContent = d.año;
+            svg.appendChild(lbl);
+        }
+        // marca CEP
+        if (d.cep) {
+            const m = svgEl("text", {x:cx(d.año)+5, y:cy(d.satisf)-8, fill:"#c0392b", "font-size":"8"});
+            m.textContent = "CEP";
+            svg.appendChild(m);
+        }
+    });
+
+    // leyenda
+    const leyenda = [
+        {color:"#f2ede6", label:"Apoyo a la democracia"},
+        {color:"#c0392b", label:"Satisfacción con la democracia"}
+    ];
+    leyenda.forEach((l, i) => {
+        const x = padL + i * 220;
+        svg.appendChild(svgEl("line", {x1:x, y1:padT-5, x2:x+20, y2:padT-5, stroke:l.color, "stroke-width":"2"}));
+        const t = svgEl("text", {x:x+24, y:padT-1, fill:"#aaa", "font-size":"9"});
+        t.textContent = l.label;
+        svg.appendChild(t);
+    });
+}
+
+// ── GRÁFICO 2: CONFIANZA EN INSTITUCIONES ────────────────
+function dibujarInstituciones() {
+    const svg = document.getElementById("grafico-instituciones");
+    const W = 760, H = 260, padL = 40, padR = 20, padT = 20, padB = 40;
+    const datos = DATOS.luna_miel;
+    const años  = datos.map(d => d.año);
+    const cx = a => escala(a, Math.min(...años), Math.max(...años), padL, W - padR);
+    const cy = v => escala(v, 0, 100, H - padB, padT);
+
+    const series = [
+        {key:"cong", color:"#e74c3c", label:"Congreso"},
+        {key:"gob",  color:"#e67e22", label:"Gobierno"},
+        {key:"part", color:"#9b59b6", label:"Partidos"},
+        {key:"pol",  color:"#3498db", label:"Policía"},
+    ];
+
+    [25, 50, 75].forEach(v => {
+        const y = cy(v);
+        svg.appendChild(svgEl("line", {x1:padL, y1:y, x2:W-padR, y2:y, stroke:"#333", "stroke-width":"0.5", "stroke-dasharray":"4 4"}));
+        const lbl = svgEl("text", {x:padL-4, y:y+4, fill:"#666", "font-size":"9", "text-anchor":"end"});
+        lbl.textContent = v + "%";
+        svg.appendChild(lbl);
+    });
+
+    svg.appendChild(svgEl("line", {x1:padL, y1:H-padB, x2:W-padR, y2:H-padB, stroke:"#555", "stroke-width":"1"}));
+
+    series.forEach(s => {
+        let d = ""; let first = true;
+        datos.forEach(punto => {
+            const v = punto[s.key];
+            if (v !== null && v !== undefined) {
+                d += (first ? "M" : "L") + cx(punto.año) + "," + cy(v);
+                first = false;
+                svg.appendChild(svgEl("circle", {cx:cx(punto.año), cy:cy(v), r:"2.5", fill:s.color}));
+            }
+        });
+        if (d) svg.appendChild(svgEl("path", {d, stroke:s.color, "stroke-width":"1.8", fill:"none"}));
+    });
+
+    // etiquetas eje X
+    datos.forEach(d => {
+        if (d.año % 5 === 0 || d.año === 1995 || d.año === 2019) {
+            const lbl = svgEl("text", {x:cx(d.año), y:H-padB+14, fill:"#888", "font-size":"9", "text-anchor":"middle"});
+            lbl.textContent = d.año;
+            svg.appendChild(lbl);
+        }
+    });
+
+    // leyenda
+    series.forEach((s, i) => {
+        const x = padL + i * 160;
+        svg.appendChild(svgEl("line", {x1:x, y1:padT-5, x2:x+16, y2:padT-5, stroke:s.color, "stroke-width":"2"}));
+        const t = svgEl("text", {x:x+20, y:padT-1, fill:"#aaa", "font-size":"9"});
+        t.textContent = s.label;
+        svg.appendChild(t);
+    });
+}
+
+// ── GRÁFICO 3: APROBACIÓN PIÑERA ─────────────────────────
+function dibujarPinera() {
+    const svg = document.getElementById("grafico-pinera");
+    const W = 760, H = 260, padL = 40, padR = 20, padT = 24, padB = 40;
+    const datos = DATOS.pinera;
+    const n = datos.length;
+
+    const cx = i  => escala(i, 0, n - 1, padL, W - padR);
+    const cy = v  => escala(v, 0, 100, H - padB, padT);
+
+    [25, 50, 75].forEach(v => {
+        const y = cy(v);
+        svg.appendChild(svgEl("line", {x1:padL, y1:y, x2:W-padR, y2:y, stroke:"#333", "stroke-width":"0.5", "stroke-dasharray":"4 4"}));
+        const lbl = svgEl("text", {x:padL-4, y:y+4, fill:"#666", "font-size":"9", "text-anchor":"end"});
+        lbl.textContent = v + "%";
+        svg.appendChild(lbl);
+    });
+
+    svg.appendChild(svgEl("line", {x1:padL, y1:H-padB, x2:W-padR, y2:H-padB, stroke:"#555", "stroke-width":"1"}));
+
+    // zona post-estallido (índice 19 = oct-2019)
+    const xEstallido = cx(19);
+    svg.appendChild(svgEl("rect", {x:xEstallido, y:padT, width:cx(n-1)-xEstallido, height:H-padB-padT, fill:"rgba(192,57,43,0.07)"}));
+    const lblEstallido = svgEl("text", {x:xEstallido+4, y:padT+10, fill:"#c0392b", "font-size":"8"});
+    lblEstallido.textContent = "Post-estallido";
+    svg.appendChild(lblEstallido);
+
+    // línea desaprueba
+    let dDes = "";
+    datos.forEach((d, i) => { dDes += (i === 0 ? "M" : "L") + cx(i) + "," + cy(d.desaprueba); });
+    svg.appendChild(svgEl("path", {d:dDes, stroke:"#c0392b", "stroke-width":"2", fill:"none"}));
+
+    // línea aprueba
+    let dApr = "";
+    datos.forEach((d, i) => { dApr += (i === 0 ? "M" : "L") + cx(i) + "," + cy(d.aprueba); });
+    svg.appendChild(svgEl("path", {d:dApr, stroke:"#f2ede6", "stroke-width":"2", fill:"none"}));
+
+    // hitos con línea vertical
+    datos.forEach((d, i) => {
+        if (d.hito) {
+            const x = cx(i);
+            svg.appendChild(svgEl("line", {x1:x, y1:padT, x2:x, y2:H-padB, stroke:"#c0392b", "stroke-width":"0.8", "stroke-dasharray":"3 3"}));
+            const t = svgEl("text", {x:x+3, y:padT+8, fill:"#c0392b", "font-size":"7.5"});
+            t.textContent = d.hito;
+            svg.appendChild(t);
+        }
+    });
+
+    // etiquetas eje X (cada 6 meses aprox)
+    datos.forEach((d, i) => {
+        if (i % 6 === 0 || i === n - 1) {
+            const lbl = svgEl("text", {x:cx(i), y:H-padB+14, fill:"#888", "font-size":"8.5", "text-anchor":"middle"});
+            lbl.textContent = d.fecha;
+            svg.appendChild(lbl);
+        }
+    });
+
+    // leyenda
+    [{color:"#f2ede6",label:"Aprueba"},{color:"#c0392b",label:"Desaprueba"}].forEach((s,i) => {
+        const x = padL + i * 140;
+        svg.appendChild(svgEl("line", {x1:x, y1:padT-8, x2:x+16, y2:padT-8, stroke:s.color, "stroke-width":"2"}));
+        const t = svgEl("text", {x:x+20, y:padT-4, fill:"#aaa", "font-size":"9"});
+        t.textContent = s.label;
+        svg.appendChild(t);
+    });
+}
+
+// ── TABLA PLEBISCITOS ────────────────────────────────────
+function llenarPlebiscitos() {
+    const tbody = document.querySelector("#tabla-plebiscitos tbody");
+    DATOS.plebiscitos.forEach(p => {
+        const ganador = p.aprueba > p.rechaza ? "Apruebo" : "Rechazo";
+        const colorGanador = ganador === "Apruebo" ? "#2ecc71" : "#c0392b";
+        tbody.innerHTML += `
+        <tr>
+            <td>${p.año}</td>
+            <td style="color:var(--gris-claro)">${p.evento}</td>
+            <td class="numero">${p.aprueba.toFixed(1)}%</td>
+            <td class="numero rojo">${p.rechaza.toFixed(1)}%</td>
+            <td style="color:var(--gris-claro)">${p.participacion.toFixed(1)}%</td>
+            <td>
+                <span style="color:${colorGanador};font-weight:600;font-size:0.85rem;">${ganador}</span>
+                <div class="barra-plebiscito">
+                    <div class="barra-aprueba" style="width:${p.aprueba}%"></div>
+                    <div class="barra-rechaza" style="width:${p.rechaza}%"></div>
+                </div>
+            </td>
+        </tr>`;
+    });
+}
+
+// ── HITOS ────────────────────────────────────────────────
+function llenarHitos() {
+    const ul = document.getElementById("lista-hitos");
+    DATOS.hitos.forEach(h => {
+        ul.innerHTML += `<li><span class="hito-año">${h.año}</span><span class="hito-texto">${h.texto}</span></li>`;
+    });
+}
+
+// ── CIFRAS ESTADÍSTICAS ──────────────────────────────────
+function llenarCifras() {
+    const datos = DATOS.luna_miel;
+    const apoyo2013 = datos.find(d => d.año === 2013);
+    const dato2019  = datos.find(d => d.año === 2019);
+    const pre = DATOS.pinera.find(d => d.fecha === "2019-09");
+    const post = DATOS.pinera.find(d => d.fecha === "2019-11");
+
+    document.getElementById("stat-apoyo-pico").textContent  = apoyo2013 ? apoyo2013.apoyo + "%" : "—";
+    document.getElementById("stat-satisf-2019").textContent = dato2019  ? dato2019.satisf + "%" : "—";
+    document.getElementById("stat-brecha").textContent      = dato2019  ? (dato2019.apoyo - dato2019.satisf).toFixed(1) + " pp" : "—";
+    document.getElementById("stat-pinera-pre").textContent  = pre  ? pre.aprueba  + "%" : "—";
+    document.getElementById("stat-pinera-post").textContent = post ? post.aprueba + "%" : "—";
+    document.getElementById("stat-cong-2019").textContent   = dato2019 ? dato2019.cong + "%" : "—";
+}
+
+// ── REVEAL ON SCROLL ─────────────────────────────────────
+function initReveal() {
+    const elementos = document.querySelectorAll(".revelar");
+    const obs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+            if (e.isIntersecting) {
+                e.target.classList.add("visible");
+                obs.unobserve(e.target);
+            }
+        });
+    }, { threshold: 0.08 });
+    elementos.forEach(el => obs.observe(el));
+}
+
+// ── INIT ─────────────────────────────────────────────────
+dibujarBrecha();
+dibujarInstituciones();
+dibujarPinera();
+llenarPlebiscitos();
+llenarHitos();
+llenarCifras();
+initReveal();
+</script>
+</body>
+</html>
