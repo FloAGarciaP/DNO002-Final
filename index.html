@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>El Desencanto — Democracia en Chile 1990–2023</title>
+    <title>Democracia amarrada — El desencanto democrático en Chile</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
@@ -17,6 +17,7 @@
         :root {
             --rojo:     #c0392b;
             --rojo-dim: #7d1f15;
+            --verde:    #2ecc71;
             --carbón:   #1a1a1a;
             --gris:     #2e2e2e;
             --gris-med: #555;
@@ -35,7 +36,10 @@
             color: var(--crema);
             font-size: 1rem;
             line-height: 1.6;
+            overflow-x: hidden;
         }
+
+        img { max-width: 100%; display: block; }
 
         /* ── PORTADA ─────────────────────────────────── */
         #portada {
@@ -68,11 +72,12 @@
 
         h1 {
             font-family: var(--display);
-            font-size: clamp(3rem, 9vw, 7rem);
+            font-size: clamp(2.4rem, 9vw, 6.4rem);
             font-weight: 700;
-            line-height: 0.95;
+            line-height: 0.97;
             color: var(--blanco);
             margin-bottom: 2rem;
+            word-break: break-word;
         }
 
         h1 em {
@@ -82,10 +87,10 @@
         }
 
         .subtítulo {
-            font-size: clamp(1rem, 2vw, 1.2rem);
+            font-size: clamp(1rem, 2vw, 1.25rem);
             font-weight: 300;
             color: var(--gris-claro);
-            max-width: 560px;
+            max-width: 620px;
             margin-bottom: 4rem;
         }
 
@@ -113,13 +118,15 @@
             margin: 0 auto;
         }
 
+        .seccion-ancha { max-width: 1320px; }
+
         h2 {
             font-family: var(--display);
-            font-size: clamp(1.8rem, 4vw, 3rem);
+            font-size: clamp(1.6rem, 4vw, 3rem);
             font-weight: 700;
             color: var(--blanco);
             margin-bottom: 0.5rem;
-            line-height: 1.1;
+            line-height: 1.15;
         }
 
         h2 .arco {
@@ -135,10 +142,38 @@
 
         .bajada {
             color: var(--gris-claro);
-            max-width: 580px;
+            max-width: 600px;
             margin-bottom: 3rem;
             font-size: 1rem;
         }
+
+        /* ── INTRO 1980 ───────────────────────────────── */
+        .intro-1980 {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .intro-1980 figure {
+            background: var(--gris);
+            padding: 1rem;
+            border-left: 3px solid var(--rojo);
+        }
+
+        .intro-1980 figcaption {
+            font-size: 0.72rem;
+            color: var(--gris-med);
+            margin-top: 0.6rem;
+        }
+
+        .intro-1980 p {
+            color: var(--gris-claro);
+            font-size: 0.98rem;
+            max-width: 560px;
+        }
+
+        .intro-1980 p strong { color: var(--crema); font-weight: 600; }
 
         /* ── CIFRA DESTACADA ─────────────────────────── */
         .cifra-bloque {
@@ -153,15 +188,18 @@
             border-left: 3px solid var(--rojo);
             padding: 1.2rem 1.6rem;
             min-width: 180px;
+            flex: 1 1 180px;
         }
 
         .cifra-numero {
             font-family: var(--display);
-            font-size: 2.8rem;
+            font-size: 2.6rem;
             font-weight: 700;
             color: var(--blanco);
             line-height: 1;
         }
+
+        .cifra-numero.rojo { color: var(--rojo); }
 
         .cifra-label {
             font-size: 0.78rem;
@@ -180,6 +218,64 @@
             color: var(--gris-claro);
             margin-bottom: 0.75rem;
         }
+
+        .chart-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+
+        .chart-stack .grafico-col { width: 100%; }
+
+        .scroll-hint {
+            font-size: 0.72rem;
+            color: var(--rojo);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            display: none;
+        }
+
+        /* ── GRÁFICO PROTAGÓNICO ─────────────────────── */
+        .grafico-titulo-protagonico {
+            font-family: var(--display);
+            font-size: clamp(1.1rem, 2.4vw, 1.5rem);
+            font-weight: 700;
+            font-style: italic;
+            text-transform: none;
+            letter-spacing: 0;
+            color: var(--blanco);
+        }
+
+        .grafico-col-protagonico { width: 100%; }
+        .grafico-col-secundario  { width: 100%; }
+
+        .grafico-wrap-protagonico {
+            background: linear-gradient(180deg, var(--gris) 0%, #262626 100%);
+            border: 1px solid var(--rojo-dim);
+            box-shadow: 0 0 0 1px rgba(192,57,43,0.08), 0 18px 40px -20px rgba(0,0,0,0.6);
+            padding: 1.75rem 1.5rem;
+        }
+
+        .grafico-wrap-protagonico svg.grafico { cursor: crosshair; }
+
+        .hito-marca { cursor: pointer; }
+        .hito-marca circle { transition: r 0.15s ease, fill 0.15s ease; }
+        .hito-marca:hover .circulo-principal { r: 7; }
+        .hito-marca text {
+            font-size: 8.5px;
+            fill: var(--gris-claro);
+            text-anchor: middle;
+        }
+        .hito-marca:hover text { fill: var(--blanco); }
+
+        .crosshair-linea { pointer-events: none; }
+        .tooltip-año {
+            font-family: var(--display);
+            font-weight: 700;
+            fill: var(--blanco);
+        }
+        .tooltip-fila { font-size: 9px; }
 
         .grafico-wrap {
             background: var(--gris);
@@ -201,42 +297,111 @@
             margin-top: 0.4rem;
         }
 
-        /* ── LÍNEA DE TIEMPO HITOS ───────────────────── */
-        .hitos-lista {
-            list-style: none;
-            border-left: 2px solid var(--rojo-dim);
-            padding-left: 1.5rem;
-            margin: 2rem 0;
+        /* ── HITOS: ahora se seleccionan directamente en el gráfico SVG
+           (ver .hito-marca más abajo), por eso no hay botones separados ── */
+
+        .panel-hito {
+            margin-top: 1.5rem;
+            background: var(--gris);
+            border-top: 3px solid var(--rojo);
+            padding: 1.75rem;
+            min-height: 60px;
+            overflow: auto;
         }
 
-        .hitos-lista li {
-            position: relative;
-            margin-bottom: 1.6rem;
-            display: flex;
-            flex-direction: column;
+        .panel-hito.vacio {
+            color: var(--gris-med);
+            font-size: 0.9rem;
+            font-style: italic;
         }
 
-        .hitos-lista li::before {
-            content: "";
-            position: absolute;
-            left: -1.65rem;
-            top: 0.4rem;
-            width: 0.6rem;
-            height: 0.6rem;
-            background: var(--rojo);
-            border-radius: 50%;
+        .panel-hito h3 {
+            font-family: var(--display);
+            color: var(--blanco);
+            font-size: clamp(1.2rem, 3vw, 1.6rem);
+            margin-bottom: 0.3rem;
         }
 
-        .hito-año {
+        .panel-hito .panel-año {
             font-size: 0.72rem;
-            font-weight: 600;
             color: var(--rojo);
             letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
         }
 
-        .hito-texto {
-            color: var(--crema);
+        .panel-hito p {
+            color: var(--gris-claro);
             font-size: 0.95rem;
+            max-width: 680px;
+            margin-bottom: 1rem;
+        }
+
+        .panel-hito .grafico-wrap {
+            margin-top: 1rem;
+        }
+
+        /* ── FOTO DEL HITO ────────────────────────────── */
+        .panel-foto {
+            float: right;
+            width: 42%;
+            max-width: 420px;
+            margin: 0 0 1.25rem 2rem;
+            background: var(--carbón);
+            padding: 0;
+            box-shadow: 0 16px 36px -18px rgba(0,0,0,0.65);
+        }
+
+        .panel-foto img {
+            width: 100%;
+            display: block;
+            border-top: 4px solid var(--rojo);
+        }
+
+        .panel-foto figcaption {
+            display: block;
+            font-size: 0.74rem;
+            font-style: italic;
+            color: var(--gris-claro);
+            padding: 0.6rem 0.1rem 0;
+            border-bottom: 1px solid var(--gris-med);
+            padding-bottom: 0.6rem;
+        }
+
+        /* si la imagen aún no existe en la raíz del repo (mismo nivel que index.html),
+           no se rompe el layout: se reemplaza por un marcador discreto con el nombre de archivo esperado */
+        .panel-foto.sin-imagen {
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px dashed var(--gris-med);
+            border-left: 3px solid var(--rojo);
+            box-shadow: none;
+        }
+
+        .panel-foto.sin-imagen img { display: none; }
+        .panel-foto.sin-imagen figcaption {
+            display: block;
+            text-align: center;
+            padding: 1rem;
+            border-bottom: none;
+            font-style: normal;
+        }
+
+        .panel-foto figcaption .cap-faltante { display: none; }
+        .panel-foto.sin-imagen figcaption .cap-real { display: none; }
+        .panel-foto.sin-imagen figcaption .cap-faltante { display: block; }
+        .panel-foto.sin-imagen figcaption .cap-faltante code {
+            display: block;
+            margin-top: 0.3rem;
+            color: var(--gris-claro);
+            font-size: 0.68rem;
+            word-break: break-all;
+        }
+
+        @media (max-width: 760px) {
+            .panel-foto { float: none; width: 100%; max-width: none; margin: 0 0 1.25rem 0; }
         }
 
         /* ── TABLA PLEBISCITOS ───────────────────────── */
@@ -244,8 +409,11 @@
             width: 100%;
             border-collapse: collapse;
             font-size: 0.9rem;
-            margin-top: 1.5rem;
+            margin-top: 1rem;
+            min-width: 560px;
         }
+
+        .tabla-scroll { overflow-x: auto; }
 
         thead tr {
             border-bottom: 2px solid var(--rojo);
@@ -262,7 +430,7 @@
         }
 
         tbody tr {
-            border-bottom: 1px solid var(--gris);
+            border-bottom: 1px solid var(--carbón);
         }
 
         td {
@@ -288,7 +456,7 @@
             overflow: hidden;
         }
 
-        .barra-aprueba { background: #2ecc71; }
+        .barra-aprueba { background: var(--verde); }
         .barra-rechaza { background: var(--rojo); }
 
         /* ── FOOTER ──────────────────────────────────── */
@@ -314,9 +482,38 @@
         }
 
         /* ── RESPONSIVE ───────────────────────────────── */
-        @media (max-width: 600px) {
-            .cifra-bloque { gap: 1rem; }
-            .cifra { min-width: 140px; }
+        @media (max-width: 900px) {
+            .intro-1980 {
+                grid-template-columns: 1fr;
+            }
+            .intro-1980 figure { max-width: 320px; }
+        }
+
+        @media (max-width: 700px) {
+            .seccion { padding: 8vh 5vw; }
+
+            /* En pantallas chicas, los gráficos no se achican: se hacen scrolleables
+               horizontalmente para que el texto interno siga siendo legible.
+               height:auto respeta el viewBox propio de cada SVG (evita aplastar el texto). */
+            .grafico-wrap { overflow-x: auto; }
+            svg.grafico {
+                width: auto;
+                min-width: 640px;
+                height: auto;
+            }
+            #grafico-brecha { min-width: 700px; }
+            .chart-stack .grafico-col { max-width: 92vw; }
+            .scroll-hint { display: block; }
+
+            .cifra-bloque { gap: 0.75rem; }
+            .cifra { min-width: 130px; padding: 1rem 1.2rem; }
+            .cifra-numero { font-size: 2.1rem; }
+
+            .panel-hito { padding: 1.1rem; }
+        }
+
+        @media (max-width: 420px) {
+            .cifra { flex: 1 1 100%; }
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -329,27 +526,64 @@
 
 <!-- ══ PORTADA ══════════════════════════════════════════ -->
 <section id="portada">
-    <p class="eyebrow">Chile 1990 — 2023</p>
-    <h1>El<br><em>desencanto</em><br>democrático</h1>
+    <p class="eyebrow">Chile 1980 — 2023</p>
+    <h1>Democracia<br><em>amarrada</em></h1>
     <p class="subtítulo">
-        Tres décadas entre el entusiasmo y el agotamiento. 
-        Cómo Chile pasó de celebrar la democracia a desconfiar 
-        de todas sus instituciones.
+        ¿Cómo se ha gestado el desencanto democrático actual?
+        Un recorrido de datos por los candados heredados de 1980,
+        la brecha entre apoyo y satisfacción, y los hitos que llevaron
+        al estallido social y al fallido proceso constitucional.
     </p>
     <p class="scroll-aviso">Desplaza para leer <span>↓</span></p>
 </section>
 
-<!-- ══ ARCO 1: LUNA DE MIEL Y DESENGANCHE ═══════════════ -->
+<!-- ══ INTRO: LOS CANDADOS DE 1980 ═══════════════════════ -->
 <section class="seccion revelar">
     <h2>
-        <span class="arco">Arco I · 1990–2019</span>
-        La luna de miel y el desenganche
+        <span class="arco">Punto de partida · 1980</span>
+        Una democracia diseñada con candados
+    </h2>
+    <div class="intro-1980">
+        <p>
+            En 1980, en plena dictadura, una Constitución redactada por la
+            Comisión Ortúzar y revisada por el Consejo de Estado que presidía
+            Jorge Alessandri fue sometida a un plebiscito sin registro
+            electoral y bajo fuertes restricciones a la libertad de expresión
+            y reunión. El texto fue aprobado con un <strong>67% de los votos</strong>
+            y comenzó a regir en plenitud en 1990, con el retorno a la democracia.
+        </p>
+        <p>
+            Su diseño incorporó mecanismos pensados para limitar lo que esa
+            futura democracia pudiera cambiar: quórums supramayoritarios de
+            reforma constitucional, leyes orgánicas constitucionales, un
+            Tribunal Constitucional con amplias atribuciones y un sistema
+            electoral binominal. Algunos de estos candados se abrieron con
+            las reformas de 1989 y 2005; otros —como los quórums de reforma—
+            siguieron vigentes y son parte del trasfondo institucional del
+            desencanto que exploran los datos a continuación.
+        </p>
+        <figure>
+            <img src="img_contexto.jpg" alt="Cédula del Plebiscito Nacional de 1980 sobre la nueva Constitución Política de la República de Chile" loading="lazy">
+            <figcaption>Cédula del Plebiscito Nacional, 11 de septiembre de 1980.</figcaption>
+        </figure>
+    </div>
+</section>
+
+<!-- ══ DESARROLLO DEL DESENCANTO — GRÁFICO INTERACTIVO ══ -->
+<section class="seccion seccion-ancha revelar">
+    <h2>
+        <span class="arco">1990–2023</span>
+        El desarrollo del desencanto democrático
     </h2>
     <p class="bajada">
-        En 1990 Chile retornó a la democracia con un apoyo masivo. 
-        Tres décadas después, ese entusiasmo se transformó en una brecha 
-        creciente entre quienes dicen preferir la democracia y quienes 
-        declaran estar satisfechos con ella.
+        El 11 de marzo de 1990 Patricio Aylwin asumió la Presidencia y la
+        Constitución de 1980 comenzó a operar en democracia. El apoyo al
+        nuevo régimen fue alto desde el inicio, aunque condicionado por los
+        candados heredados de la dictadura. Las tres décadas siguientes
+        muestran una trayectoria de apoyo relativamente estable y satisfacción
+        decreciente. Recorre el gráfico con el cursor para ver los datos de
+        cada año, y haz clic en los puntos rojos para abrir el contexto de
+        cada hito.
     </p>
 
     <div class="cifra-bloque">
@@ -365,101 +599,31 @@
             <div class="cifra-numero" id="stat-brecha">—</div>
             <div class="cifra-label">Brecha apoyo vs satisfacción, 2019<br><small>(puntos porcentuales)</small></div>
         </div>
-    </div>
-
-    <p class="grafico-titulo">Apoyo a la democracia vs. satisfacción — Chile 1995–2019</p>
-    <div class="grafico-wrap">
-        <svg id="grafico-brecha" class="grafico" viewBox="0 0 760 280" aria-label="Gráfico de líneas: apoyo y satisfacción con la democracia en Chile"></svg>
-    </div>
-    <p class="fuente-nota">Fuente: Latinobarómetro (microdatos Chile, IDENPA=152). 2019: CEP Encuesta N°84.</p>
-
-    <p class="grafico-titulo" style="margin-top:2.5rem;">Confianza en instituciones — % que declara mucha o bastante confianza</p>
-    <div class="grafico-wrap">
-        <svg id="grafico-instituciones" class="grafico" viewBox="0 0 760 260" aria-label="Gráfico confianza en instituciones"></svg>
-    </div>
-    <p class="fuente-nota">Fuente: Latinobarómetro. Congreso, Gobierno, Partidos y Policía. Valores ausentes = sin dato comparable ese año.</p>
-
-    <h3 style="font-family:var(--display);color:var(--blanco);margin:3rem 0 1rem;font-size:1.3rem;">Hitos del período</h3>
-    <ul class="hitos-lista" id="lista-hitos"></ul>
-</section>
-
-<!-- ══ ARCO 2: ESTALLIDO ══════════════════════════════════ -->
-<section class="seccion revelar">
-    <h2>
-        <span class="arco">Arco II · Octubre 2019</span>
-        El estallido social
-    </h2>
-    <p class="bajada">
-        El 18 de octubre de 2019 evasiones masivas en el Metro de Santiago 
-        detonaron la mayor movilización social desde el retorno democrático.
-        La aprobación presidencial colapsó en semanas.
-    </p>
-
-    <div class="cifra-bloque">
         <div class="cifra">
-            <div class="cifra-numero" id="stat-pinera-pre">—</div>
-            <div class="cifra-label">Aprobación Piñera, sept. 2019</div>
-        </div>
-        <div class="cifra">
-            <div class="cifra-numero rojo" id="stat-pinera-post">—</div>
-            <div class="cifra-label">Aprobación Piñera, nov. 2019<br><small>(CADEM N°307)</small></div>
-        </div>
-        <div class="cifra">
-            <div class="cifra-numero" id="stat-cong-2019">—</div>
-            <div class="cifra-label">Confianza en el Congreso, dic. 2019<br><small>(CEP N°84)</small></div>
+            <div class="cifra-numero rojo" id="stat-part-caida">—</div>
+            <div class="cifra-label">Caída en participación electoral<br><small>1989 → 2017</small></div>
         </div>
     </div>
 
-    <p class="grafico-titulo">Aprobación presidencial Piñera II — CADEM mensual 2018–2020</p>
-    <div class="grafico-wrap">
-        <svg id="grafico-pinera" class="grafico" viewBox="0 0 760 260" aria-label="Gráfico aprobación Piñera"></svg>
-    </div>
-    <p class="fuente-nota">Fuente: CADEM Plaza Pública (serie mensual). Wikipedia — Anexo encuestas aprobación gobierno Piñera.</p>
-</section>
-
-<!-- ══ ARCO 3: PROCESO CONSTITUCIONAL ════════════════════ -->
-<section class="seccion revelar">
-    <h2>
-        <span class="arco">Arco III · 2020–2023</span>
-        El proceso constitucional fallido
-    </h2>
-    <p class="bajada">
-        La crisis derivó en un acuerdo político histórico: un proceso 
-        constituyente inédito. Pero el país rechazó dos propuestas 
-        consecutivas, cerrando el ciclo sin nueva Constitución.
-    </p>
-
-    <table id="tabla-plebiscitos">
-        <thead>
-            <tr>
-                <th>Año</th>
-                <th>Plebiscito</th>
-                <th>Aprueba</th>
-                <th>Rechaza</th>
-                <th>Participación</th>
-                <th>Resultado</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-    </table>
-    <p class="fuente-nota" style="margin-top:0.75rem;">Fuente: SERVEL — resultados oficiales.</p>
-
-    <div style="margin-top:3rem;" class="cifra-bloque">
-        <div class="cifra">
-            <div class="cifra-numero">83.8%</div>
-            <div class="cifra-label">Apoyaba una nueva Constitución<br><small>CEP N°84, diciembre 2019</small></div>
+    <p class="grafico-titulo grafico-titulo-protagonico">Apoyo, satisfacción y participación electoral — Chile 1989–2023</p>
+    <p class="scroll-hint">En pantallas chicas, desliza cada gráfico horizontalmente →</p>
+    <div class="chart-stack">
+        <div class="grafico-col grafico-col-protagonico">
+            <div class="grafico-wrap grafico-wrap-protagonico">
+                <svg id="grafico-brecha" class="grafico" viewBox="0 0 800 430" aria-label="Gráfico interactivo de líneas: apoyo a la democracia, satisfacción y participación electoral en Chile. Recorrible con el cursor; los puntos rojos abren cada hito."></svg>
+            </div>
+            <p class="fuente-nota">Fuente: Latinobarómetro (IDENPA=152). 2019: CEP Encuesta N°84. Participación: Servel / DecideChile, % del padrón electoral. Puntos rojos = hitos clicables.</p>
         </div>
-        <div class="cifra">
-            <div class="cifra-numero rojo">55.8%</div>
-            <div class="cifra-label">Rechazó la segunda propuesta<br><small>Diciembre 2023</small></div>
+        <div class="grafico-col grafico-col-secundario">
+            <p class="grafico-titulo">Confianza en instituciones <small>(gráfico complementario)</small></p>
+            <div class="grafico-wrap">
+                <svg id="grafico-instituciones" class="grafico" viewBox="0 0 760 260" aria-label="Gráfico confianza en instituciones"></svg>
+            </div>
+            <p class="fuente-nota">Fuente: Latinobarómetro. Congreso, Gobierno, Partidos y Policía. Sin dato = sin medición comparable ese año.</p>
         </div>
     </div>
 
-    <p style="color:var(--gris-claro);max-width:560px;font-size:0.95rem;margin-top:1rem;">
-        En cuatro años el país pasó de una demanda casi unánime por una nueva Constitución 
-        a rechazar dos veces los textos elaborados para concretarla. 
-        El desencanto no era solo con los gobiernos: era con las instituciones y los procesos mismos.
-    </p>
+    <div class="panel-hito vacio" id="panel-hito">Pasa el cursor por el gráfico para ver los datos de cada año, o haz clic en un punto rojo para abrir el contexto de ese hito.</div>
 </section>
 
 <!-- ══ CIERRE ═════════════════════════════════════════════ -->
@@ -469,33 +633,42 @@
         Una democracia sostenida, una ciudadanía agotada
     </h2>
     <p class="bajada">
-        Los datos muestran un patrón consistente: el apoyo abstracto a la democracia 
-        se mantuvo relativamente alto, pero la satisfacción con su funcionamiento 
-        y la confianza en sus instituciones cayeron de forma sostenida durante tres décadas.
-        El estallido de 2019 no fue un rayo en cielo despejado: fue el punto de llegada 
-        de un desenganche acumulado.
+        Los datos muestran un patrón consistente: el apoyo abstracto a la
+        democracia se mantuvo relativamente alto, pero la satisfacción con
+        su funcionamiento, la confianza en sus instituciones y la
+        participación electoral cayeron de forma sostenida durante tres
+        décadas. El estallido de 2019 no fue un quiebre repentino: fue el
+        punto de llegada de un desenganche acumulado desde una Constitución
+        diseñada, desde 1980, para resistir el cambio. El propio proceso
+        para reemplazarla —rechazado dos veces entre 2022 y 2023— terminó
+        replicando, en sus resultados, el mismo desencanto que lo originó.
     </p>
 
     <div class="cifra-bloque">
         <div class="cifra">
-            <div class="cifra-numero">30 años</div>
+            <div class="cifra-numero">29 años</div>
             <div class="cifra-label">Entre el retorno democrático y el estallido</div>
         </div>
         <div class="cifra">
-            <div class="cifra-numero rojo">56.3 pp</div>
+            <div class="cifra-numero rojo">46.3 pp</div>
             <div class="cifra-label">Caída en confianza al Congreso<br><small>1995–2019: de 49% a 2.7%</small></div>
         </div>
         <div class="cifra">
             <div class="cifra-numero">3</div>
-            <div class="cifra-label">Plebiscitos constitucionales<br><small>en 3 años</small></div>
+            <div class="cifra-label">Plebiscitos constitucionales<br><small>en 3 años (2020–2023)</small></div>
+        </div>
+        <div class="cifra">
+            <div class="cifra-numero rojo">40.1 pp</div>
+            <div class="cifra-label">Caída en participación electoral<br><small>1989 (86.8%) → 2017 (46.7%)</small></div>
         </div>
     </div>
 </section>
 
 <footer>
-    <strong>El Desencanto Democrático</strong> — Proyecto de infografía de datos · DNO002-12<br>
-    Fuentes: Latinobarómetro (microdatos Chile 1995–2020), CEP Encuesta N°84 (dic. 2019), 
-    CADEM Plaza Pública, SERVEL, Wikipedia (encuestas aprobación gobierno Piñera II).
+    <strong>Democracia amarrada</strong> — Proyecto de infografía de datos · DNO002-12<br>
+    Fuentes: Latinobarómetro (microdatos Chile 1995–2020), CEP Encuesta N°84 (dic. 2019),
+    CADEM Plaza Pública, SERVEL, DecideChile (participación electoral histórica),
+    Wikipedia (encuestas aprobación gobierno Piñera II).
 </footer>
 
 <script>
@@ -524,6 +697,20 @@ const DATOS = {
     {año:2017,apoyo:58.3,satisf:37.4,cong:20.6,gob:28.5,part:14.0,pol:46.5},
     {año:2018,apoyo:60.1,satisf:47.0,cong:19.9,gob:40.0,part:14.4,pol:47.8},
     {año:2019,apoyo:61.8,satisf:5.5, cong:2.7, gob:5.5, part:1.8, pol:18.0,cep:true}
+  ],
+  // participación electoral en elecciones presidenciales/plebiscitos, % del padrón electoral
+  participacion: [
+    {año:1989,part:86.8},
+    {año:1993,part:82.4},
+    {año:1999,part:73.1},
+    {año:2005,part:69.0},
+    {año:2009,part:59.6},
+    {año:2013,part:49.3,hito:"Voto voluntario (Ley 20.568)"},
+    {año:2017,part:46.7},
+    {año:2020,part:50.9},
+    {año:2021,part:43.4},
+    {año:2022,part:85.8,hito:"Vuelve voto obligatorio"},
+    {año:2023,part:84.5}
   ],
   pinera: [
     {fecha:"2018-03",aprueba:55,desaprueba:21},
@@ -565,16 +752,209 @@ const DATOS = {
     {año:2020,evento:"Plebiscito de entrada",aprueba:78.28,rechaza:21.72,participacion:50.95},
     {año:2022,evento:"1° plebiscito de salida",aprueba:38.14,rechaza:61.86,participacion:85.86},
     {año:2023,evento:"2° plebiscito de salida",aprueba:44.04,rechaza:55.76,participacion:85.44}
-  ],
-  hitos: [
-    {año:1990,texto:"Retorno a la democracia — Aylwin asume la Presidencia"},
-    {año:2005,texto:"Reforma constitucional elimina senadores designados"},
-    {año:2010,texto:"Primera alternancia política desde 1990"},
-    {año:2011,texto:"Movimiento estudiantil masivo por educación pública"},
-    {año:2015,texto:"Escándalos de corrupción (caso Caval) sacuden al gobierno"},
-    {año:2019,texto:"Estallido social — 18 de octubre"}
   ]
 };
+
+// ── HITOS INTERACTIVOS ───────────────────────────────────
+// 'denso' marca los hitos con mayor profundidad de datos (estallido y proceso constitucional)
+const HITOS = [
+  {
+    id: "retorno", año: "1990", titulo: "Retorno a la democracia",
+    foto: "img_hitos_retorno.jpg",
+    creditoFoto: "Cédula del Plebiscito Nacional de 1988, que negó a Augusto Pinochet ocho años más en la jefatura del Estado y abrió paso al retorno a la democracia.",
+    denso: false,
+    texto: () => `
+      <p>El 11 de marzo de 1990 Patricio Aylwin asumió la Presidencia, poniendo
+      fin a 17 años de dictadura. La Constitución de 1980 —con sus candados
+      intactos— comenzó a operar en democracia. La medición sistemática de
+      apoyo y satisfacción con Latinobarómetro recién comienza en 1995, pero
+      las primeras lecturas de esa década ya muestran el patrón que se repetirá:
+      apoyo alto, satisfacción más baja y volátil.</p>`
+  },
+  {
+    id: "concertacion", año: "1990–2005", titulo: "Concertación y reformas a la Constitución",
+    foto: "img_hitos_concertacion.jpg",
+    creditoFoto: "El presidente Ricardo Lagos firma, en agosto de 2005, el texto constitucional refundido tras la Ley 20.050 —reemplazando la firma de Augusto Pinochet.",
+    denso: false,
+    texto: () => `
+      <p>Durante los gobiernos de la Concertación se fueron abriendo algunos de
+      los candados heredados de 1980: la eliminación del artículo que proscribía
+      partidos de izquierda (1989) y, en agosto de 2005, bajo Ricardo Lagos, la
+      Ley 20.050 introdujo 58 reformas constitucionales. Entre ellas: la
+      reducción del período presidencial de seis a cuatro años, el fin de los
+      senadores designados y vitalicios, y el término del rol de las Fuerzas
+      Armadas como garantes de la institucionalidad.</p>
+      <p>Lagos llamó a ese texto "una nueva Constitución" y cambió su firma por
+      la de Pinochet. Pero la reforma mantuvo intactos los quórums
+      supramayoritarios de reforma, las leyes orgánicas constitucionales y un
+      Tribunal Constitucional fortalecido —los mismos candados que seguirían
+      bloqueando cambios durante la década siguiente. El apoyo a la democracia
+      subió de <strong>54.3% (1995)</strong> a <strong>65.2% (2005)</strong>,
+      pero la satisfacción se mantuvo muy por debajo, entre 28% y 48% en el
+      mismo período: las reformas alcanzaron al diseño institucional, no a la
+      percepción ciudadana.</p>`
+  },
+  {
+    id: "pingpong", año: "2006–2018", titulo: "El ping pong Bachelet–Piñera",
+    denso: false,
+    texto: () => `
+      <p>Entre 2006 y 2018 el país alternó cuatro gobiernos entre Bachelet y
+      Piñera —la primera alternancia política desde 1990 ocurrió en 2010—. El
+      apoyo a la democracia llegó a su punto más alto de la serie en 2013
+      (<strong>68.6%</strong>), pero la confianza en el Congreso seguía cayendo:
+      de 30.9% en 2006 a apenas <strong>19.9%</strong> en 2018. La alternancia
+      en el gobierno no se tradujo en mayor confianza en las instituciones.</p>`
+  },
+  {
+    id: "estudiantil", año: "2011", titulo: "Movimiento estudiantil",
+    foto: "img_hitos_estudiantil.jpg",
+    creditoFoto: "Manifestación nocturna por la educación pública en Santiago, parte del ciclo de movilizaciones que se extendió de la Revolución Pingüina de 2006 al movimiento de 2011.",
+    denso: false,
+    texto: () => `
+      <p>El ciclo de protesta estudiantil partió antes, en mayo de 2006, cuando
+      la llamada Revolución Pingüina exigió el fin de la Prueba SIMCE, pase
+      escolar gratuito y el término del lucro en la educación. Esa movilización
+      derogó la Ley Orgánica Constitucional de Enseñanza heredada de la
+      dictadura, reemplazada por la Ley General de Educación, e instaló un
+      debate sobre inequidad educativa que no se cerraría ahí.</p>
+      <p>En 2011, ya con demandas universitarias, las movilizaciones por una
+      educación pública, gratuita y de calidad marcaron el ciclo de protesta
+      más amplio desde el retorno a la democracia. Ese año la confianza en el
+      gobierno cayó a <strong>37.9%</strong> y en el Congreso a
+      <strong>29.3%</strong>, tras los máximos alcanzados en 2010 (58.1% y 42.0%
+      respectivamente). La secuencia 2006–2011–2019 comparte protagonistas y
+      lenguaje: el estallido de octubre de 2019 también lo inauguraron protestas
+      de estudiantes secundarios.</p>`
+  },
+  {
+    id: "voto", año: "2012", titulo: "Paso al voto voluntario (Ley 20.568)",
+    denso: true,
+    texto: () => {
+      const p2009 = DATOS.participacion.find(d => d.año === 2009);
+      const p2013 = DATOS.participacion.find(d => d.año === 2013);
+      const p2017 = DATOS.participacion.find(d => d.año === 2017);
+      return `
+      <p>La Ley 20.568 de 2012 reemplazó la inscripción voluntaria con voto
+      obligatorio por la inscripción automática con voto voluntario. El
+      objetivo declarado era aumentar la participación al incorporar
+      automáticamente a millones de jóvenes al padrón. El resultado fue el
+      opuesto: la participación, que ya venía cayendo, se desplomó.</p>
+      <div class="cifra-bloque" style="margin-top:0.5rem;">
+        <div class="cifra"><div class="cifra-numero">${p2009 ? p2009.part : "—"}%</div><div class="cifra-label">Participación 2009<br><small>último proceso con voto obligatorio</small></div></div>
+        <div class="cifra"><div class="cifra-numero rojo">${p2013 ? p2013.part : "—"}%</div><div class="cifra-label">Participación 2013<br><small>primer proceso con voto voluntario</small></div></div>
+        <div class="cifra"><div class="cifra-numero rojo">${p2017 ? p2017.part : "—"}%</div><div class="cifra-label">Participación 2017<br><small>mínimo histórico de la serie</small></div></div>
+      </div>
+      <p>La inscripción automática amplió el padrón electoral a más de 13
+      millones de personas, pero la proporción que efectivamente vota nunca
+      volvió a superar el 50% en una elección ordinaria hasta el retorno del
+      voto obligatorio en 2022.</p>`;
+    }
+  },
+  {
+    id: "estallido", año: "Octubre 2019", titulo: "Estallido social",
+    foto: "img_hitos_estallido.jpg",
+    creditoFoto: "Manifestante junto a una barricada en llamas durante las protestas de octubre de 2019 en Santiago.",
+    denso: true,
+    texto: () => {
+      const d2019 = DATOS.luna_miel.find(d => d.año === 2019);
+      const pre = DATOS.pinera.find(d => d.fecha === "2019-09");
+      const post = DATOS.pinera.find(d => d.fecha === "2019-11");
+      return `
+      <p>El 18 de octubre de 2019, evasiones masivas en el Metro de Santiago
+      —en protesta por el alza en la tarifa— detonaron la mayor movilización
+      social desde el retorno democrático. La crisis no surgió de la nada: fue
+      el punto de llegada de un desenganche acumulado durante casi tres décadas.</p>
+      <div class="cifra-bloque" style="margin-top:0.5rem;">
+        <div class="cifra"><div class="cifra-numero">${pre ? pre.aprueba : "—"}%</div><div class="cifra-label">Aprobación Piñera, sept. 2019</div></div>
+        <div class="cifra"><div class="cifra-numero rojo">${post ? post.aprueba : "—"}%</div><div class="cifra-label">Aprobación Piñera, nov. 2019<br><small>caída de ${pre && post ? (pre.aprueba - post.aprueba) : "—"} pp en 2 meses</small></div></div>
+        <div class="cifra"><div class="cifra-numero rojo">${d2019 ? d2019.satisf : "—"}%</div><div class="cifra-label">Satisfacción con la democracia<br><small>CEP N°84, dic. 2019 — mínimo histórico</small></div></div>
+        <div class="cifra"><div class="cifra-numero rojo">${d2019 ? d2019.cong : "—"}%</div><div class="cifra-label">Confianza en el Congreso<br><small>CEP N°84, dic. 2019</small></div></div>
+      </div>
+      <p>El apoyo abstracto a la democracia se mantuvo en
+      <strong>${d2019 ? d2019.apoyo : "—"}%</strong> incluso en plena crisis,
+      mientras la satisfacción con su funcionamiento cayó a un
+      <strong>${d2019 ? d2019.satisf : "—"}%</strong> sin precedentes —una brecha de
+      <strong>${d2019 ? (d2019.apoyo - d2019.satisf).toFixed(1) : "—"} puntos porcentuales</strong>,
+      la mayor de toda la serie. No se rechazaba la idea de democracia: se
+      rechazaba la que existía.</p>
+      <p>Ese contraste tiene raíces más largas que octubre de 2019. Desde los
+      años noventa la desafección política se acumuló de forma silenciosa: cayó
+      la inscripción electoral juvenil, creció la desconfianza institucional, y
+      la abstención llegó al 46% en las parlamentarias de 2017. Cuando ese
+      malestar estructural se sostiene por años sin respuesta de las élites
+      —que durante décadas lo leyeron como apatía y no como rechazo—, el
+      sistema político entra en un proceso de descomposición que puede
+      estallar de golpe.</p>
+      <p>La misma encuesta CEP de diciembre de 2019 muestra el desencanto
+      extendido a la respuesta institucional: un <strong>81%</strong> consideraba
+      que el gobierno había actuado mal o muy mal frente al estallido, un
+      <strong>47%</strong> evaluaba que la democracia chilena funcionaba mal o
+      muy mal, y un <strong>83.8%</strong> ya respaldaba redactar una nueva
+      Constitución —la demanda que definiría el arco siguiente.</p>
+      <p class="grafico-titulo" style="margin-top:1.5rem;">Aprobación presidencial Piñera II — CADEM mensual 2018–2020</p>
+      <div class="grafico-wrap">
+          <svg id="grafico-pinera" class="grafico" viewBox="0 0 760 260" aria-label="Gráfico aprobación Piñera"></svg>
+      </div>
+      <p class="fuente-nota">Fuente: CADEM Plaza Pública (serie mensual). Wikipedia — Anexo encuestas aprobación gobierno Piñera. CEP Encuesta N°84, dic. 2019.</p>`;
+    }
+  },
+  {
+    id: "constitucional", año: "2020–2023", titulo: "El proceso constitucional fallido",
+    foto: "img_hitos_constitucional.jpg",
+    creditoFoto: "Cédula del plebiscito de entrada de octubre de 2020: \"¿Quiere usted una nueva Constitución?\" — Apruebo / Rechazo.",
+    denso: true,
+    texto: () => {
+      const filas = DATOS.plebiscitos.map(p => {
+        const ganador = p.aprueba > p.rechaza ? "Apruebo" : "Rechazo";
+        const colorGanador = ganador === "Apruebo" ? "var(--verde)" : "var(--rojo)";
+        return `
+        <tr>
+            <td>${p.año}</td>
+            <td style="color:var(--gris-claro)">${p.evento}</td>
+            <td class="numero">${p.aprueba.toFixed(1)}%</td>
+            <td class="numero rojo">${p.rechaza.toFixed(1)}%</td>
+            <td style="color:var(--gris-claro)">${p.participacion.toFixed(1)}%</td>
+            <td>
+                <span style="color:${colorGanador};font-weight:600;font-size:0.85rem;">${ganador}</span>
+                <div class="barra-plebiscito">
+                    <div class="barra-aprueba" style="width:${p.aprueba}%"></div>
+                    <div class="barra-rechaza" style="width:${p.rechaza}%"></div>
+                </div>
+            </td>
+        </tr>`;
+      }).join("");
+      return `
+      <p>En octubre de 2020, un <strong>78.28%</strong> aprobó redactar una
+      nueva Constitución mediante una Convención Constitucional: el resultado
+      individual más alto en cualquier votación nacional desde 1990. Era,
+      también, la traducción institucional del estallido. Pero el texto
+      resultante fue rechazado en septiembre de 2022 con un 61.86%, y un
+      segundo intento —esta vez de signo político opuesto— fue rechazado en
+      diciembre de 2023 con un 55.76%.</p>
+      <div class="tabla-scroll">
+      <table>
+        <thead><tr><th>Año</th><th>Proceso</th><th>Apruebo</th><th>Rechazo</th><th>Participación</th><th>Resultado</th></tr></thead>
+        <tbody>${filas}</tbody>
+      </table>
+      </div>
+      <p style="margin-top:1.25rem;">En diciembre de 2019 un <strong>83.8%</strong>
+      apoyaba redactar una nueva Constitución (CEP N°84). Cuatro años y dos
+      plebiscitos después, el país había rechazado dos veces los textos
+      elaborados para concretarla, con una participación electoral —ya
+      obligatoria de nuevo— por sobre el 85%. El desencanto no era solo con
+      los gobiernos de turno: alcanzaba también al propio proceso diseñado
+      para resolverlo.</p>
+      <p>El balance ciudadano de CADEM hacia fines de 2023 confirma que esa
+      sensación no se limitó al plano institucional: una mayoría declaraba
+      que el país estaba peor que en 2019 en delincuencia (<strong>93%</strong>),
+      violencia (<strong>90%</strong>), situación económica (<strong>75%</strong>),
+      calidad de la política (<strong>73%</strong>), confianza en las instituciones
+      (<strong>68%</strong>) y desigualdad (<strong>62%</strong>). El estallido
+      buscaba resolver un desencanto; cuatro años después, la percepción
+      ciudadana registraba más motivos de desencanto que al inicio.</p>`;
+    }
+  }
+];
 
 // ── UTILIDADES SVG ───────────────────────────────────────
 function escala(val, min, max, outMin, outMax) {
@@ -587,68 +967,66 @@ function svgEl(tag, attrs) {
     return el;
 }
 
-// ── GRÁFICO 1: BRECHA APOYO VS SATISFACCIÓN ─────────────
+// años de referencia de los hitos, mapeados a su id en HITOS, para marcarlos
+// y hacerlos clicables directamente sobre el gráfico principal.
+// "etiqueta" = texto corto a mostrar; "carril" = fila vertical para evitar
+// que etiquetas de años cercanos (2010-2012) se superpongan entre sí.
+const MARCAS_HITO = [
+    {año:1990,   id:"retorno",       etiqueta:"Retorno",       carril:0},
+    {año:2005,   id:"concertacion",  etiqueta:"Reformas",      carril:0},
+    {año:2010,   id:"pingpong",      etiqueta:"Ping-pong",     carril:0},
+    {año:2011,   id:"estudiantil",   etiqueta:"Movilizaciones",carril:1},
+    {año:2012,   id:"voto",          etiqueta:"Voto voluntario",carril:2},
+    {año:2019,   id:"estallido",     etiqueta:"Estallido",     carril:0},
+    {año:2021.5, id:"constitucional",etiqueta:"Constituyente", carril:0}
+];
+
+// ── GRÁFICO 1: APOYO / SATISFACCIÓN / PARTICIPACIÓN (protagónico e interactivo) ─────
 function dibujarBrecha() {
     const svg = document.getElementById("grafico-brecha");
-    const W = 760, H = 280, padL = 40, padR = 20, padT = 20, padB = 40;
+    svg.innerHTML = "";
+    const W = 800, H = 430, padL = 44, padR = 24, padT = 30, padB = 96;
     const datos = DATOS.luna_miel;
 
-    const años  = datos.map(d => d.año);
-    const minA  = Math.min(...años), maxA = Math.max(...años);
-    const minV  = 0, maxV = 100;
+    const minA = 1989, maxA = 2023;
+    const minV = 0, maxV = 100;
 
-    const cx = a  => escala(a, minA, maxA, padL, W - padR);
-    const cy = v  => escala(v, minV, maxV, H - padB, padT);
+    const cx = a => escala(a, minA, maxA, padL, W - padR);
+    const cy = v => escala(v, minV, maxV, H - padB, padT);
+    // inversa: de coordenada x del cursor a año
+    const xToAño = x => escala(x, padL, W - padR, minA, maxA);
 
-    // ejes
-    const ejeX = svgEl("line", {x1: padL, y1: H-padB, x2: W-padR, y2: H-padB, stroke:"#555", "stroke-width":"1"});
-    svg.appendChild(ejeX);
+    svg.appendChild(svgEl("line", {x1: padL, y1: H-padB, x2: W-padR, y2: H-padB, stroke:"#555", "stroke-width":"1"}));
 
-    // guías horizontales
     [25, 50, 75].forEach(v => {
         const y = cy(v);
         svg.appendChild(svgEl("line", {x1:padL, y1:y, x2:W-padR, y2:y, stroke:"#333", "stroke-width":"0.5", "stroke-dasharray":"4 4"}));
-        const lbl = svgEl("text", {x:padL-4, y:y+4, fill:"#666", "font-size":"9", "text-anchor":"end"});
+        const lbl = svgEl("text", {x:padL-4, y:y+4, fill:"#666", "font-size":"10", "text-anchor":"end"});
         lbl.textContent = v + "%";
         svg.appendChild(lbl);
     });
 
-    // área brecha (relleno entre curvas)
+    // área brecha apoyo/satisfacción
     const puntosApoyo  = datos.map(d => `${cx(d.año)},${cy(d.apoyo)}`);
     const puntosSmooth = datos.slice().reverse().map(d => `${cx(d.año)},${cy(d.satisf)}`);
-    const area = svgEl("polygon", {
+    svg.appendChild(svgEl("polygon", {
         points: [...puntosApoyo, ...puntosSmooth].join(" "),
         fill: "rgba(192,57,43,0.12)", stroke:"none"
-    });
-    svg.appendChild(area);
+    }));
 
     // línea satisfacción
     let dSatisf = "";
-    datos.forEach((d, i) => {
-        dSatisf += (i === 0 ? "M" : "L") + cx(d.año) + "," + cy(d.satisf);
-    });
-    svg.appendChild(svgEl("path", {d:dSatisf, stroke:"#c0392b", "stroke-width":"2", fill:"none"}));
+    datos.forEach((d, i) => { dSatisf += (i === 0 ? "M" : "L") + cx(d.año) + "," + cy(d.satisf); });
+    svg.appendChild(svgEl("path", {d:dSatisf, stroke:"#c0392b", "stroke-width":"2.2", fill:"none"}));
 
     // línea apoyo
     let dApoyo = "";
-    datos.forEach((d, i) => {
-        dApoyo += (i === 0 ? "M" : "L") + cx(d.año) + "," + cy(d.apoyo);
-    });
-    svg.appendChild(svgEl("path", {d:dApoyo, stroke:"#f2ede6", "stroke-width":"2", fill:"none"}));
+    datos.forEach((d, i) => { dApoyo += (i === 0 ? "M" : "L") + cx(d.año) + "," + cy(d.apoyo); });
+    svg.appendChild(svgEl("path", {d:dApoyo, stroke:"#f2ede6", "stroke-width":"2.2", fill:"none"}));
 
-    // puntos + año etiqueta en eje X
     datos.forEach(d => {
-        // punto apoyo
         svg.appendChild(svgEl("circle", {cx:cx(d.año), cy:cy(d.apoyo), r:"3", fill:"#f2ede6"}));
-        // punto satisfacción
         svg.appendChild(svgEl("circle", {cx:cx(d.año), cy:cy(d.satisf), r:"3", fill:"#c0392b"}));
-        // etiqueta eje X (solo años redondos)
-        if (d.año % 5 === 0 || d.año === 1995 || d.año === 2019) {
-            const lbl = svgEl("text", {x:cx(d.año), y:H-padB+14, fill:"#888", "font-size":"9", "text-anchor":"middle"});
-            lbl.textContent = d.año;
-            svg.appendChild(lbl);
-        }
-        // marca CEP
         if (d.cep) {
             const m = svgEl("text", {x:cx(d.año)+5, y:cy(d.satisf)-8, fill:"#c0392b", "font-size":"8"});
             m.textContent = "CEP";
@@ -656,18 +1034,135 @@ function dibujarBrecha() {
         }
     });
 
+    // línea + puntos de participación electoral (datos dispersos: solo años con elección)
+    let dPart = ""; let firstPart = true;
+    DATOS.participacion.forEach(d => {
+        const x = cx(d.año), y = cy(d.part);
+        dPart += (firstPart ? "M" : "L") + x + "," + y;
+        firstPart = false;
+        svg.appendChild(svgEl("circle", {cx:x, cy:y, r:"3", fill:"#2ecc71"}));
+    });
+    svg.appendChild(svgEl("path", {d:dPart, stroke:"#2ecc71", "stroke-width":"1.6", "stroke-dasharray":"2 3", fill:"none"}));
+
+    // marca del cambio a voto voluntario (2012)
+    const xVoto = cx(2012);
+    svg.appendChild(svgEl("line", {x1:xVoto, y1:padT, x2:xVoto, y2:H-padB, stroke:"#2ecc71", "stroke-width":"0.8", "stroke-dasharray":"3 3"}));
+
+    // etiquetas eje X (pegadas al eje; la franja de hitos vive más abajo, separada)
+    [1990,1995,2000,2005,2010,2015,2019,2023].forEach(año => {
+        svg.appendChild(svgEl("line", {x1:cx(año), y1:H-padB, x2:cx(año), y2:H-padB+5, stroke:"#666", "stroke-width":"1"}));
+        const lbl = svgEl("text", {x:cx(año), y:H-padB+16, fill:"#888", "font-size":"10", "text-anchor":"middle"});
+        lbl.textContent = año;
+        svg.appendChild(lbl);
+    });
+
     // leyenda
     const leyenda = [
         {color:"#f2ede6", label:"Apoyo a la democracia"},
-        {color:"#c0392b", label:"Satisfacción con la democracia"}
+        {color:"#c0392b", label:"Satisfacción con la democracia"},
+        {color:"#2ecc71", label:"Participación electoral"}
     ];
     leyenda.forEach((l, i) => {
-        const x = padL + i * 220;
-        svg.appendChild(svgEl("line", {x1:x, y1:padT-5, x2:x+20, y2:padT-5, stroke:l.color, "stroke-width":"2"}));
-        const t = svgEl("text", {x:x+24, y:padT-1, fill:"#aaa", "font-size":"9"});
+        const x = padL + i * 215;
+        svg.appendChild(svgEl("line", {x1:x, y1:padT-14, x2:x+18, y2:padT-14, stroke:l.color, "stroke-width":"2.2"}));
+        const t = svgEl("text", {x:x+22, y:padT-10, fill:"#aaa", "font-size":"9"});
         t.textContent = l.label;
         svg.appendChild(t);
     });
+
+    // ── marcadores de hito: clicables, directamente sobre el gráfico ──
+    // Cada marcador vive en una franja propia (debajo de las etiquetas del eje X),
+    // y usa "carriles" (lanes) verticales para que los años cercanos (2010-2012)
+    // no superpongan su texto entre sí.
+    const grupoHitos = svgEl("g", {id:"grupo-hitos"});
+    const yBaseHitos = H - padB + 30;
+    const altoCarril = 16;
+    MARCAS_HITO.forEach(m => {
+        const x = cx(m.año);
+        const yEtiqueta = yBaseHitos + m.carril * altoCarril;
+        const g = svgEl("g", {class:"hito-marca", tabindex:"0", role:"button", "aria-label":"Ver hito: " + m.etiqueta});
+
+        // línea conectora del eje hasta la etiqueta (clave cuando hay varios carriles)
+        g.appendChild(svgEl("line", {x1:x, y1:H-padB, x2:x, y2:yEtiqueta-7, stroke:"#c0392b", "stroke-width":"0.8", "stroke-dasharray":"2 3", opacity:"0.6"}));
+        // punto clicable sobre el eje
+        g.appendChild(svgEl("circle", {class:"circulo-principal", cx:x, cy:H-padB, r:"5.5", fill:"#c0392b", stroke:"#1a1a1a", "stroke-width":"1.5"}));
+        // pequeño punto de anclaje al inicio de la etiqueta, para dejar claro a qué año corresponde
+        g.appendChild(svgEl("circle", {class:"circulo-ancla", cx:x, cy:yEtiqueta, r:"1.6", fill:"#c0392b"}));
+
+        const lbl = svgEl("text", {
+            x: x + 6, y: yEtiqueta + 3,
+            fill: "#ddd", "text-anchor": "start"
+        });
+        lbl.textContent = m.etiqueta;
+        g.appendChild(lbl);
+
+        g.addEventListener("click", () => mostrarHito(m.id));
+        g.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") mostrarHito(m.id); });
+        grupoHitos.appendChild(g);
+    });
+    svg.appendChild(grupoHitos);
+
+    // ── crosshair interactivo: el cursor recorre los años ──
+    const añosConDatos = Array.from(new Set([
+        ...datos.map(d => d.año),
+        ...DATOS.participacion.map(d => d.año)
+    ])).sort((a,b) => a-b);
+
+    const capaCursor = svgEl("g", {id:"capa-cursor", style:"pointer-events:none;"});
+    const lineaCursor = svgEl("line", {class:"crosshair-linea", x1:0, y1:padT, x2:0, y2:H-padB, stroke:"#fff", "stroke-width":"1", "stroke-dasharray":"3 3", opacity:"0"});
+    const cAp = svgEl("circle", {r:"5", fill:"none", stroke:"#f2ede6", "stroke-width":"2", opacity:"0"});
+    const cSat = svgEl("circle", {r:"5", fill:"none", stroke:"#c0392b", "stroke-width":"2", opacity:"0"});
+    const cPart = svgEl("circle", {r:"5", fill:"none", stroke:"#2ecc71", "stroke-width":"2", opacity:"0"});
+    const fondoTooltip = svgEl("rect", {x:0, y:0, width:150, height:64, rx:4, fill:"#0f0f0f", stroke:"#444", "stroke-width":"1", opacity:"0"});
+    const txtAño = svgEl("text", {class:"tooltip-año", x:0, y:0, "font-size":"13", opacity:"0"});
+    const txtApoyo = svgEl("text", {class:"tooltip-fila", x:0, y:0, fill:"#f2ede6", opacity:"0"});
+    const txtSatisf = svgEl("text", {class:"tooltip-fila", x:0, y:0, fill:"#c0392b", opacity:"0"});
+    const txtPart = svgEl("text", {class:"tooltip-fila", x:0, y:0, fill:"#2ecc71", opacity:"0"});
+    [lineaCursor, fondoTooltip, txtAño, txtApoyo, txtSatisf, txtPart, cAp, cSat, cPart].forEach(el => capaCursor.appendChild(el));
+    svg.appendChild(capaCursor);
+
+    function actualizarCursor(añoActivo) {
+        const d = datos.find(p => p.año === añoActivo);
+        const p = DATOS.participacion.find(p => p.año === añoActivo);
+        const x = cx(añoActivo);
+
+        lineaCursor.setAttribute("x1", x); lineaCursor.setAttribute("x2", x); lineaCursor.setAttribute("opacity", "0.5");
+
+        if (d) { cAp.setAttribute("cx", x); cAp.setAttribute("cy", cy(d.apoyo)); cAp.setAttribute("opacity", "1"); }
+        else cAp.setAttribute("opacity", "0");
+        if (d) { cSat.setAttribute("cx", x); cSat.setAttribute("cy", cy(d.satisf)); cSat.setAttribute("opacity", "1"); }
+        else cSat.setAttribute("opacity", "0");
+        if (p) { cPart.setAttribute("cx", x); cPart.setAttribute("cy", cy(p.part)); cPart.setAttribute("opacity", "1"); }
+        else cPart.setAttribute("opacity", "0");
+
+        // posicionar tooltip a la derecha del cursor, o a la izquierda si no cabe
+        const ancho = 150, alto = 64;
+        let tx = x + 12;
+        if (tx + ancho > W - padR) tx = x - ancho - 12;
+        let ty = padT + 4;
+
+        fondoTooltip.setAttribute("x", tx); fondoTooltip.setAttribute("y", ty); fondoTooltip.setAttribute("opacity", "0.95");
+        txtAño.setAttribute("x", tx+10); txtAño.setAttribute("y", ty+18); txtAño.textContent = añoActivo; txtAño.setAttribute("opacity","1");
+        txtApoyo.setAttribute("x", tx+10); txtApoyo.setAttribute("y", ty+34); txtApoyo.textContent = "Apoyo: " + (d ? d.apoyo + "%" : "sin dato"); txtApoyo.setAttribute("opacity","1");
+        txtSatisf.setAttribute("x", tx+10); txtSatisf.setAttribute("y", ty+47); txtSatisf.textContent = "Satisfacción: " + (d ? d.satisf + "%" : "sin dato"); txtSatisf.setAttribute("opacity","1");
+        txtPart.setAttribute("x", tx+10); txtPart.setAttribute("y", ty+60); txtPart.textContent = "Participación: " + (p ? p.part + "%" : "sin dato"); txtPart.setAttribute("opacity","1");
+    }
+
+    function ocultarCursor() {
+        [lineaCursor, cAp, cSat, cPart, fondoTooltip, txtAño, txtApoyo, txtSatisf, txtPart].forEach(el => el.setAttribute("opacity", "0"));
+    }
+
+    svg.addEventListener("pointermove", (e) => {
+        const rect = svg.getBoundingClientRect();
+        const escalaX = W / rect.width;
+        const xSvg = (e.clientX - rect.left) * escalaX;
+        const añoAprox = xToAño(xSvg);
+        // año más cercano dentro de los que tienen algún dato
+        let mejor = añosConDatos[0];
+        añosConDatos.forEach(a => { if (Math.abs(a - añoAprox) < Math.abs(mejor - añoAprox)) mejor = a; });
+        actualizarCursor(mejor);
+    });
+    svg.addEventListener("pointerleave", ocultarCursor);
 }
 
 // ── GRÁFICO 2: CONFIANZA EN INSTITUCIONES ────────────────
@@ -709,7 +1204,6 @@ function dibujarInstituciones() {
         if (d) svg.appendChild(svgEl("path", {d, stroke:s.color, "stroke-width":"1.8", fill:"none"}));
     });
 
-    // etiquetas eje X
     datos.forEach(d => {
         if (d.año % 5 === 0 || d.año === 1995 || d.año === 2019) {
             const lbl = svgEl("text", {x:cx(d.año), y:H-padB+14, fill:"#888", "font-size":"9", "text-anchor":"middle"});
@@ -718,7 +1212,6 @@ function dibujarInstituciones() {
         }
     });
 
-    // leyenda
     series.forEach((s, i) => {
         const x = padL + i * 160;
         svg.appendChild(svgEl("line", {x1:x, y1:padT-5, x2:x+16, y2:padT-5, stroke:s.color, "stroke-width":"2"}));
@@ -728,15 +1221,17 @@ function dibujarInstituciones() {
     });
 }
 
-// ── GRÁFICO 3: APROBACIÓN PIÑERA ─────────────────────────
+// ── GRÁFICO 3: APROBACIÓN PIÑERA (se dibuja al abrir el panel "estallido") ──
 function dibujarPinera() {
     const svg = document.getElementById("grafico-pinera");
+    if (!svg) return;
+    svg.innerHTML = "";
     const W = 760, H = 260, padL = 40, padR = 20, padT = 24, padB = 40;
     const datos = DATOS.pinera;
     const n = datos.length;
 
-    const cx = i  => escala(i, 0, n - 1, padL, W - padR);
-    const cy = v  => escala(v, 0, 100, H - padB, padT);
+    const cx = i => escala(i, 0, n - 1, padL, W - padR);
+    const cy = v => escala(v, 0, 100, H - padB, padT);
 
     [25, 50, 75].forEach(v => {
         const y = cy(v);
@@ -748,24 +1243,20 @@ function dibujarPinera() {
 
     svg.appendChild(svgEl("line", {x1:padL, y1:H-padB, x2:W-padR, y2:H-padB, stroke:"#555", "stroke-width":"1"}));
 
-    // zona post-estallido (índice 19 = oct-2019)
     const xEstallido = cx(19);
     svg.appendChild(svgEl("rect", {x:xEstallido, y:padT, width:cx(n-1)-xEstallido, height:H-padB-padT, fill:"rgba(192,57,43,0.07)"}));
     const lblEstallido = svgEl("text", {x:xEstallido+4, y:padT+10, fill:"#c0392b", "font-size":"8"});
     lblEstallido.textContent = "Post-estallido";
     svg.appendChild(lblEstallido);
 
-    // línea desaprueba
     let dDes = "";
     datos.forEach((d, i) => { dDes += (i === 0 ? "M" : "L") + cx(i) + "," + cy(d.desaprueba); });
     svg.appendChild(svgEl("path", {d:dDes, stroke:"#c0392b", "stroke-width":"2", fill:"none"}));
 
-    // línea aprueba
     let dApr = "";
     datos.forEach((d, i) => { dApr += (i === 0 ? "M" : "L") + cx(i) + "," + cy(d.aprueba); });
     svg.appendChild(svgEl("path", {d:dApr, stroke:"#f2ede6", "stroke-width":"2", fill:"none"}));
 
-    // hitos con línea vertical
     datos.forEach((d, i) => {
         if (d.hito) {
             const x = cx(i);
@@ -776,7 +1267,6 @@ function dibujarPinera() {
         }
     });
 
-    // etiquetas eje X (cada 6 meses aprox)
     datos.forEach((d, i) => {
         if (i % 6 === 0 || i === n - 1) {
             const lbl = svgEl("text", {x:cx(i), y:H-padB+14, fill:"#888", "font-size":"8.5", "text-anchor":"middle"});
@@ -785,7 +1275,6 @@ function dibujarPinera() {
         }
     });
 
-    // leyenda
     [{color:"#f2ede6",label:"Aprueba"},{color:"#c0392b",label:"Desaprueba"}].forEach((s,i) => {
         const x = padL + i * 140;
         svg.appendChild(svgEl("line", {x1:x, y1:padT-8, x2:x+16, y2:padT-8, stroke:s.color, "stroke-width":"2"}));
@@ -795,36 +1284,47 @@ function dibujarPinera() {
     });
 }
 
-// ── TABLA PLEBISCITOS ────────────────────────────────────
-function llenarPlebiscitos() {
-    const tbody = document.querySelector("#tabla-plebiscitos tbody");
-    DATOS.plebiscitos.forEach(p => {
-        const ganador = p.aprueba > p.rechaza ? "Apruebo" : "Rechazo";
-        const colorGanador = ganador === "Apruebo" ? "#2ecc71" : "#c0392b";
-        tbody.innerHTML += `
-        <tr>
-            <td>${p.año}</td>
-            <td style="color:var(--gris-claro)">${p.evento}</td>
-            <td class="numero">${p.aprueba.toFixed(1)}%</td>
-            <td class="numero rojo">${p.rechaza.toFixed(1)}%</td>
-            <td style="color:var(--gris-claro)">${p.participacion.toFixed(1)}%</td>
-            <td>
-                <span style="color:${colorGanador};font-weight:600;font-size:0.85rem;">${ganador}</span>
-                <div class="barra-plebiscito">
-                    <div class="barra-aprueba" style="width:${p.aprueba}%"></div>
-                    <div class="barra-rechaza" style="width:${p.rechaza}%"></div>
-                </div>
-            </td>
-        </tr>`;
-    });
-}
+// ── HITOS: selección directamente desde los marcadores del gráfico ──
+function mostrarHito(id) {
+    const hito = HITOS.find(h => h.id === id);
+    if (!hito) return;
 
-// ── HITOS ────────────────────────────────────────────────
-function llenarHitos() {
-    const ul = document.getElementById("lista-hitos");
-    DATOS.hitos.forEach(h => {
-        ul.innerHTML += `<li><span class="hito-año">${h.año}</span><span class="hito-texto">${h.texto}</span></li>`;
+    // resaltar el marcador activo dentro del SVG (solo el círculo principal de cada hito)
+    document.querySelectorAll("#grupo-hitos .circulo-principal").forEach(c => {
+        c.setAttribute("r", "5.5");
+        c.setAttribute("fill", "#c0392b");
     });
+    const marcaIdx = MARCAS_HITO.findIndex(m => m.id === id);
+    if (marcaIdx >= 0) {
+        const circulos = document.querySelectorAll("#grupo-hitos .circulo-principal");
+        if (circulos[marcaIdx]) {
+            circulos[marcaIdx].setAttribute("r", "7.5");
+            circulos[marcaIdx].setAttribute("fill", "#fff");
+        }
+    }
+
+    const panel = document.getElementById("panel-hito");
+    panel.classList.remove("vacio");
+    const figuraFoto = hito.foto ? `
+        <figure class="panel-foto" data-archivo="${hito.foto}">
+            <img src="${hito.foto}" alt="${hito.creditoFoto || hito.titulo}" loading="lazy"
+                 onerror="this.closest('figure').classList.add('sin-imagen')">
+            <figcaption>
+                <span class="cap-real">${hito.creditoFoto || hito.titulo}</span>
+                <span class="cap-faltante">Falta subir <code>${hito.foto}</code> a la raíz del repositorio</span>
+            </figcaption>
+        </figure>` : "";
+    panel.innerHTML = `
+        <p class="panel-año">${hito.año}</p>
+        <h3>${hito.titulo}</h3>
+        ${figuraFoto}
+        ${hito.texto()}
+    `;
+
+    // si el panel incluye el gráfico de Piñera, dibujarlo ahora que existe en el DOM
+    if (id === "estallido") dibujarPinera();
+
+    panel.scrollIntoView({behavior: "smooth", block: "nearest"});
 }
 
 // ── CIFRAS ESTADÍSTICAS ──────────────────────────────────
@@ -832,15 +1332,13 @@ function llenarCifras() {
     const datos = DATOS.luna_miel;
     const apoyo2013 = datos.find(d => d.año === 2013);
     const dato2019  = datos.find(d => d.año === 2019);
-    const pre = DATOS.pinera.find(d => d.fecha === "2019-09");
-    const post = DATOS.pinera.find(d => d.fecha === "2019-11");
+    const p1989 = DATOS.participacion.find(d => d.año === 1989);
+    const p2017 = DATOS.participacion.find(d => d.año === 2017);
 
     document.getElementById("stat-apoyo-pico").textContent  = apoyo2013 ? apoyo2013.apoyo + "%" : "—";
     document.getElementById("stat-satisf-2019").textContent = dato2019  ? dato2019.satisf + "%" : "—";
     document.getElementById("stat-brecha").textContent      = dato2019  ? (dato2019.apoyo - dato2019.satisf).toFixed(1) + " pp" : "—";
-    document.getElementById("stat-pinera-pre").textContent  = pre  ? pre.aprueba  + "%" : "—";
-    document.getElementById("stat-pinera-post").textContent = post ? post.aprueba + "%" : "—";
-    document.getElementById("stat-cong-2019").textContent   = dato2019 ? dato2019.cong + "%" : "—";
+    document.getElementById("stat-part-caida").textContent  = (p1989 && p2017) ? (p1989.part - p2017.part).toFixed(1) + " pp" : "—";
 }
 
 // ── REVEAL ON SCROLL ─────────────────────────────────────
@@ -860,9 +1358,6 @@ function initReveal() {
 // ── INIT ─────────────────────────────────────────────────
 dibujarBrecha();
 dibujarInstituciones();
-dibujarPinera();
-llenarPlebiscitos();
-llenarHitos();
 llenarCifras();
 initReveal();
 </script>
